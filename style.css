@@ -1,0 +1,242 @@
+/***
+    The new CSS reset - version 1.7.2 (last updated 23.6.2022)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+*:where(:not(html, iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a,
+button {
+  cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  appearance: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+  color: unset;
+}
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly.
+   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable="false"])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+  -webkit-user-drag: element;
+}
+
+* {
+  font-family: "Red Hat Display", Roboto, Arial, Helvetica, sans-serif;
+  font-weight: var(--low-fw);
+}
+
+:root {
+  --low-fw: 500;
+  --mid-fw: 700;
+  --high-fw: 900;
+
+  --clr-pri-p-b: hsl(225, 100%, 94%);
+  --clr-pri-b-b: hsl(245, 75%, 52%);
+
+  --clr-neu-v-p-b: hsl(225, 100%, 98%);
+  --clr-neu-de-b: hsl(224, 23%, 55%);
+  --clr-neu-da-b: hsl(223, 47%, 23%);
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(./images/pattern-background-desktop.svg);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-color: var(--clr-pri-p-b);
+  background-blend-mode: multiply;
+}
+
+.container {
+  max-width: 80vw;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: white;
+  border-radius: .6rem;
+  height: 80%;
+  box-shadow: 0 0 1rem hsla(224, 23%, 55%, .3);
+}
+
+figure {
+  height: 30%;
+  margin-bottom: 2.5rem;
+}
+
+figure img {
+  height: 100%;
+  object-fit: cover;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+main > h1 {
+  font-size: 1.5rem;
+  font-weight: var(--high-fw);
+}
+
+main > h4 {
+  opacity: .7;
+}
+
+section {
+  background-color: var(--clr-neu-v-p-b);
+  padding: 1rem;
+  border-radius: .5rem;
+  width: 75%;
+  display: flex;
+  align-items: center;
+}
+
+aside {
+  text-align: left;
+  width: 75%;
+  margin-left: 1rem;
+}
+
+aside > h2 {
+  font-weight: var(--mid-fw);
+  opacity: .9;
+  margin-bottom: .2rem;
+}
+
+aside > h3 {
+  opacity: .7;
+}
+
+section > h5 a {
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--clr-pri-b-b);
+  transition: .5s;
+}
+
+section > h5 a:hover {
+  text-decoration: none;
+  opacity: .7;
+}
+
+main > h2 {
+  width: 75%;
+  background-color: var(--clr-pri-b-b);
+  color: white;
+  padding: .7rem 0;
+  border-radius: .5rem;
+  cursor: pointer;
+  box-shadow: 0 1rem .8rem var(--clr-pri-p-b);
+  transition: .5s;
+}
+
+main > h2:hover {
+  opacity: .7;
+}
+
+main > h5 {
+  cursor: pointer;
+  opacity: .5;
+  transition: .5s;
+}
+
+main > h5:hover {
+  opacity: 1;
+  font-weight: var(--mid-fw);
+}
+
+@media screen and (max-width: 375px) {
+  * {
+    font-size: .95rem;
+  }
+
+  figure img {
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .container {
+    width: 80%;
+  }
+
+  main {
+    gap: 1.5rem;
+  }
+
+  section {
+    padding: .6rem;
+  }
+
+  section img {
+    width: 20%;
+  }
+
+  section,
+  main > h2 {
+    width: 85%;
+  }
+}
